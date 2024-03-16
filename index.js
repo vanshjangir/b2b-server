@@ -18,7 +18,7 @@ const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
 async function callgemini(prompt) {
   const model = genAI.getGenerativeModel({ model: "gemini-pro"});
 
-  let preprompt = "give output in about 30 words in a single string in this JSON style format on key(para) for single paragraph about to dress for the following occasion, and another key(keywords) for a single string of keywords about the dresses and clothes without spaces and separated by commas,  with a fashion ideas for how to dress according to the following occasion\n";
+  let preprompt = "give output in about 30 words in a single string in this JSON style format on key(para) for single paragraph about to dress for the following occasion, and another key(keywords) for a single string of 4 keywords about the dresses and clothes without spaces and separated by commas,  with a fashion ideas for how to dress according to the following occasion\n";
   prompt = prompt+preprompt;
 
   const result = await model.generateContent(prompt);
