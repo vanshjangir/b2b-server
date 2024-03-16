@@ -18,7 +18,7 @@ const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
 async function callgemini(prompt) {
   const model = genAI.getGenerativeModel({ model: "gemini-pro"});
 
-  let preprompt = "give output in single string like this [[\"firstidea\", \"keywords\"], [\"second idea\", \"keywords\"]] with ideas as strings and keywords will be two keywords related to that idea, keywords should strictly be the names of clothes or dresses or designs and strictly according to the following request\n";
+  let preprompt = "give output in a single paragraph with a fashion ideas for how to dress according to the following occasion\n";
   prompt = prompt+preprompt;
 
   const result = await model.generateContent(prompt);
@@ -49,7 +49,6 @@ app.post('/login', async (req, res) => {
 
 app.post('/signup', async (req, res) => {
   const userdata = req.body;
-  const db = client.db('hackOharbour');
   const users = db.collection('users');
   const userarr = await users.find({}).toArray();
   
@@ -92,13 +91,7 @@ app.get('/searches', async (req, res) => {
   
   const prompt = req.body;
   let result= await callgemini(prompt['prompt']);
-  let final= JSON.parse(result);
-
-  for(let i=0; i<final.length; i++){
-    final[i][1] = final[i][1].replaceAll(" ", ",");
-  }
-
-  res.status(200).json(final);
+  res.status(200).send(result);
   
 })
 app.listen(port, () => {
