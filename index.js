@@ -2,9 +2,13 @@ const GoogleGenerativeAI = require('@google/generative-ai').GoogleGenerativeAI;
 const express = require('express')
 const app = express()
 const port = 3000
+const cors = require('cors')
 const CONFIG = require('./config.json');
 const GEMINI_API_KEY = CONFIG.genapi
 
+
+app.use(cors());
+app.use(express.json());
 
 const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
 
@@ -33,9 +37,14 @@ app.get('/categories', async (req, res) => {
 
 app.get('/searches', async (req, res) => {
   
-  const prompt = req.params;
-  let result= await callgemini(prompt);
+  const prompt = req.body;
+  let result= await callgemini(prompt['prompt']);
   let final= JSON.parse(result);
+
+  for(let i=0; i<final.length; i++){
+    final[i][1] = final[i][1].replaceAll(" ", "");
+  }
+
   res.status(200).json(final);
   
 })
