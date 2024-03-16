@@ -91,7 +91,7 @@ app.get('/searches', async (req, res) => {
   
   const prompt = req.body;
   let result= await callgemini(prompt['prompt']);
-  res.status(200).send(result);
+  res.status(200).json({"result":result});
   
 })
 app.listen(port, () => {
