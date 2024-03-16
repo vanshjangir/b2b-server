@@ -8,12 +8,10 @@ const API_KEY = CONFIG.genapi
 
 const genAI = new GoogleGenerativeAI(API_KEY);
 
-async function callgemini() {
+async function callgemini(prompt) {
   const model = genAI.getGenerativeModel({ model: "gemini-pro"});
 
-  let preprompt = "";
-
-  let prompt = "give me some fashion categories for indian occasions";
+  let preprompt = "give output in javascript array type with ideas as strings in that array and ";
   prompt = prompt+preprompt;
 
   const result = await model.generateContent(prompt);
@@ -23,7 +21,8 @@ async function callgemini() {
 }
 
 app.get('/categories', async (req, res) => {
-  res.send(await callgemini());
+  let prompt = "give me some fashion categories for indian occasions";
+  res.send(await callgemini(prompt));
 })
 
 app.listen(port, () => {
