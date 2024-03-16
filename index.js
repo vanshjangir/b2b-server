@@ -3,7 +3,7 @@ const express = require('express')
 const app = express()
 const port = 3000
 const cors = require('cors')
-const GEMINI_API_KEY = process.env.API_URL;
+const GEMINI_API_KEY = "AIzaSyBrjP4-mCYNeLUqEj0wyFFLGARahdUrA5c";
 
 
 app.use(cors());
