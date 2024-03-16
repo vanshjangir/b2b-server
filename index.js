@@ -11,18 +11,22 @@ const genAI = new GoogleGenerativeAI(API_KEY);
 async function callgemini(prompt) {
   const model = genAI.getGenerativeModel({ model: "gemini-pro"});
 
-  let preprompt = "give output in javascript array type with ideas as strings in that array and ";
+  let preprompt = "give output in single string like this [\"firstidea\", \"second idea\"] with ideas as strings ";
   prompt = prompt+preprompt;
 
   const result = await model.generateContent(prompt);
-  const response = await result.response;
+  const response = result.response;
   const text = response.text();
   return text;
 }
 
 app.get('/categories', async (req, res) => {
-  let prompt = "give me some fashion categories for indian occasions";
-  res.send(await callgemini(prompt));
+  const prompt = "give me some fashion categories for indian occasions just as single word for each category with only english alphabets";
+
+  const response = await callgemini(prompt);
+  const array = JSON.parse(response);
+  console.log(array);
+  res.send(array);
 })
 
 app.listen(port, () => {
