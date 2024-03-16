@@ -18,7 +18,7 @@ const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
 async function callgemini(prompt) {
   const model = genAI.getGenerativeModel({ model: "gemini-pro"});
 
-  let preprompt = "give output in a single paragraph with a fashion ideas for how to dress according to the following occasion\n";
+  let preprompt = "give output in about 30 words in a single paragraph with a fashion ideas for how to dress according to the following occasion\n";
   prompt = prompt+preprompt;
 
   const result = await model.generateContent(prompt);
