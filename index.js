@@ -25,6 +25,14 @@ app.get('/categories', async (req, res) => {
   res.send(await callgemini(prompt));
 })
 
+app.get('/searches', async (req, res) => {
+  
+  const prompt = req.params;
+  let result= await callgemini(prompt);
+  let final= JSON.parse(result);
+  res.status(200).json(final);
+  
+})
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
