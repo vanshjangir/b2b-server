@@ -4,7 +4,7 @@ const app = express()
 const port = 3000
 const cors = require('cors')
 const {MongoClient} = require('mongodb')
-const uri = "mongodb+srv://hackOharbour:D1kVfg4XSaaq3sUX@cluster0.g1ic6ja.mongodb.net/?retryWrites=true&w=majority";
+const uri = "--mongodb-uri--";
 const GEMINI_API_KEY = "AIzaSyBrjP4-mCYNeLUqEj0wyFFLGARahdUrA5c";
 
 const client = new MongoClient(uri);
