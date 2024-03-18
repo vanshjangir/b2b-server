@@ -7,8 +7,8 @@ const {MongoClient} = require('mongodb')
 const uri = "--mongodb-uri--";
 const GEMINI_API_KEY = "AIzaSyBrjP4-mCYNeLUqEj0wyFFLGARahdUrA5c";
 
-const client = new MongoClient(uri);
-const db = client.db('bit2byte');
+//const client = new MongoClient(uri);
+//const db = client.db('bit2byte');
 
 app.use(cors());
 app.use(express.json());
