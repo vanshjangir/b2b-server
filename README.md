@@ -1,1 +1,1 @@
-[website link](dotgitignore.vercel.app)
+[website link](https://dotgitignore.vercel.app)
